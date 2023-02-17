@@ -1,7 +1,7 @@
-import Banner from "../../components/Banner";
-import Header from "../../components/Header"
+import Banner from "../components/Banner";
+import Header from "../components/Header"
 import React from "react"
-import "../../styles/globals.css"
+import "../styles/globals.css"
 
 export default function RootLayout({
   children,
