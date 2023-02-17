@@ -6,6 +6,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "@heroicons/react": "^2.0.15",
+    "@tailwindcss/line-clamp": "^0.4.2",
     "next": "latest",
     "next-images": "^1.8.4",
     "next-link": "^2.0.0",
