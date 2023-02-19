@@ -17,12 +17,12 @@ export default async function handler(
         }
         const data = await prisma.post.findMany({
           include: {
-            user: true,
-            comments: true,
-            likes: true,
+            // user: true,
+            // comments: true,
+            // likes: true,
           },
           orderBy: {
-            createdAt: "description",
+            // createdAt: "description",
           },
         })
         return res.status(200).json(data)
