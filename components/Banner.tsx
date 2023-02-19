@@ -10,12 +10,12 @@ function Banner() {
           <h2 className="mt-5 md:mt-0">
             Welcome to the{' '}
             <span className="underline decoration-4 decoration-[#537FE7]">
-              health and fitness blog for people concerned with
+              health and fitness
             </span>{' '}
-            living right.
+            blog for people concerned with living right.
           </h2>
         </div>
-        <p className="mt-5 md:mt-2 text-gray-400 max-w-sm">
+        <p className="mt-5 md:mt-2 text-gray-500 max-w-sm">
           We discuss health and healthy living habits.
         </p>
       </div>

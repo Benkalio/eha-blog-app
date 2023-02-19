@@ -5,7 +5,7 @@ import Link from 'next/link'
 function Header() {
   return (
     <header className="sticky top-0 z-30 w-full bg-white flex items-center justify-between space-x-2 font-bold px-10 py-1">
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center space-x-1">
         <Link href="/">
           <Image
             className="rounded-full"
@@ -15,7 +15,7 @@ function Header() {
             alt="logo"
           />
         </Link>
-        <h1>Living Healthy</h1>
+        <p className=''>Living Healthy</p>
       </div>
       <div>
         <Link
