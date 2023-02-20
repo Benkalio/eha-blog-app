@@ -29,7 +29,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-, "../eha-blog/components/Banner.tsx", "../eha-blog/components/Logo.tsx", "../eha-blog/components/Header.tsx"  ],
+, "../eha-blog/components/Banner.tsx", "../eha-blog/components/Logo.tsx", "../eha-blog/components/Header.tsx", "components/ContactForm"  ],
   "exclude": [
     "node_modules"
   ]

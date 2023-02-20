@@ -8,50 +8,42 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 model User {
   id    String    @id @default(cuid())
   email String  @unique
   name  String?
-  emailVerified DateTime?
+  passwordHash   String
+  role           Role     @default(USER)
   image         String?
   accounts      Account[]
   sessions      Session[]
-  posts Post[]
-  likes Like[]
-  comments Comment[]
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  posts          Post[]
 }
 
 model Post {
   id        String    @id @default(cuid())
+  title       String
+  description String
+  image       String
+  categories  Category[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  title     String
   published Boolean   @default(false)
   userId    String
   user      User      @relation(fields: [userId], references: [id])
-  likes Like[]
-  comments Comment[]
+  content     String
+  slug        String    @unique
 }
 
-model Like {
-  id     String @id @default(cuid())
-  postId String
-  userId String
-  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-model Comment {
-  id        String   @id @default(cuid())
-  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
-  user      User     @relation(fields: [userId], references: [id])
-  title     String
-  postId    String
-  userId    String
-  createdAt DateTime @default(now())
+model Category {
+  id         Int     @id @default(autoincrement())
+  name       String
+  slug       String  @unique
+  posts      Post[]
 }
 
 model Account {
@@ -69,6 +61,13 @@ model Account {
   session_state     String?
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   @@unique([provider, providerAccountId])
+}
+
+enum Role {
+  USER
+  AUTHOR
+  PUBLISHER
+  ADMIN
 }
 
 model Session {

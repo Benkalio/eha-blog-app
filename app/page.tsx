@@ -1,6 +1,9 @@
 import React from 'react'
 import BlogList from '../components/BlogList'
 
+import { GetStaticProps } from 'next';
+import prisma from '../prisma/client';
+
 async function getPosts() {
   const res = await fetch(`${process.env.BASE_URL}/api/getPosts`)
 
@@ -11,11 +14,11 @@ async function getPosts() {
 }
 
 export default async function HomePage() {
-  const data: { id: number; title: string }[] = await getPosts();
+  // const data: { id: number; title: string }[] = await getPosts();
   return (
     <div>
       {/* <BlogList posts={posts} /> */}
-      <h1 className="text-4xl">Checking</h1>
+      {/* <h1 className="text-4xl">[data]</h1> */}
       <h1 className="text-4xl">Checking</h1>
       <h1 className="text-4xl">Checking</h1>
       <h1 className="text-4xl">Checking</h1>

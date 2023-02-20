@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.0.15",
+    "@hookform/resolvers": "^2.9.11",
     "@next-auth/prisma-adapter": "^0.4.4-canary.81",
     "@prisma/client": "^4.10.1",
     "@tailwindcss/line-clamp": "^0.4.2",
@@ -19,8 +20,11 @@
     "next-preload-headers": "^3.0.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-dropzone": "^14.2.3",
+    "react-hook-form": "^7.43.1",
     "react-query": "^3.39.3",
-    "react-redux": "^8.0.5"
+    "react-redux": "^8.0.5",
+    "yup": "^1.0.0"
   },
   "devDependencies": {
     "@types/node": "^18.11.3",
