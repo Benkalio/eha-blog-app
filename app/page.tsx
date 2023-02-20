@@ -28,7 +28,7 @@ export default function HomePage() {
   };
   
   return (
-    <QueryClientProvider client={queryClient} contextSharing={true}>
+    <div>
       <AddPost />
       {data?.map((post) => (
         <Post
@@ -62,6 +62,6 @@ export default function HomePage() {
         </div>
       ))} */}
       <p></p>
-    </QueryClientProvider>
+    </div>
   );
 }
