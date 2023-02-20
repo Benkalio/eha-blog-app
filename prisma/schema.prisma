@@ -22,6 +22,8 @@ model User {
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
   posts          Post[]
+  comments  Comment[]
+  likes    Like[]
 }
 
 model Post {
@@ -37,6 +39,8 @@ model Post {
   user      User      @relation(fields: [userId], references: [id])
   content     String
   slug        String    @unique
+  comments  Comment[]
+  likes    Like[]
 }
 
 model Category {
@@ -44,6 +48,24 @@ model Category {
   name       String
   slug       String  @unique
   posts      Post[]
+}
+
+model Like {
+  id     String @id @default(cuid())
+  postId String
+  userId String
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id])
+  title     String
+  postId    String
+  userId    String
+  createdAt DateTime @default(now())
 }
 
 model Account {

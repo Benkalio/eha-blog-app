@@ -1,22 +1,45 @@
-import React from 'react'
-import BlogList from '../components/BlogList'
+"use client"
 
-import { GetStaticProps } from 'next';
-import prisma from '../prisma/client';
+import axios from 'axios';
+import React from 'react';
+import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
+import AddPost from './AddPost';
+import Post from './Post';
+import { PostsType } from './types/Posts';
 
-async function getPosts() {
-  const res = await fetch(`${process.env.BASE_URL}/api/getPosts`)
+const queryClient = new QueryClient();
 
-  if (!res.ok) { 
-    console.log(res);
-  } 
-  return res.json()
+async function allPosts() {
+  const res = await axios(`${process.env.BASE_URL}/api/getPosts`);
+
+  return res.data;
 }
 
-export default async function HomePage() {
-  // const data: { id: number; title: string }[] = await getPosts();
+export default function HomePage() {
+  const { data, error, isLoading } = useQuery<PostsType[]>({
+    queryFn: allPosts,
+    queryKey: ['posts'],
+  });
+  if (error) {
+    return error
+  };
+  if (isLoading) {
+    return 'Loading.....'
+  };
+  
   return (
-    <div>
+    <QueryClientProvider client={queryClient} contextSharing={true}>
+      <AddPost />
+      {data?.map((post) => (
+        <Post
+          key={post.id}
+          id={post.id}
+          name={post.user.name}
+          avatar={post.user.image}
+          postTitle={post.title}
+          comments={post.comments}
+        />
+      ))}
       {/* <BlogList posts={posts} /> */}
       {/* <h1 className="text-4xl">[data]</h1> */}
       <h1 className="text-4xl">Checking</h1>
@@ -39,6 +62,6 @@ export default async function HomePage() {
         </div>
       ))} */}
       <p></p>
-    </div>
+    </QueryClientProvider>
   );
 }

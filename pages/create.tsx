@@ -23,8 +23,11 @@ const Draft: React.FC = () => {
 
   return (
     <RootLayout>
-      <div>
-        <form onSubmit={submitData}>
+      <div className="">
+        <form
+          onSubmit={submitData}
+          className="max-w-md mx-10  justify-center lg:space-x-10 "
+        >
           <h1>New Post</h1>
           <input
             autoFocus
@@ -34,10 +37,10 @@ const Draft: React.FC = () => {
             value={title}
           />
           <textarea
-            cols={50}
+            cols={30}
             onChange={(e) => setContent(e.target.value)}
             placeholder="Content"
-            rows={8}
+            rows={6}
             value={content}
           />
           <input disabled={!content || !title} type="submit" value="Create" />
